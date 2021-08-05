@@ -5,9 +5,9 @@ export const create = async (event) => {
   try {
     const auth = event.requestContext.authorizer
     const body = JSON.parse(event.body)
-    const board = createBoard(auth, body)
-    created(board)
+    const board = await createBoard(auth, body)
+    return created(board)
   } catch (err) {
-    serverError(err)
+    return serverError(err)
   }
 }
